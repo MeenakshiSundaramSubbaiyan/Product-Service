@@ -1,5 +1,6 @@
 package com.retail.productservice.service;
 
+import com.retail.productservice.exception.ProductNotFoundException;
 import com.retail.productservice.vo.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -37,6 +38,9 @@ public class ProductClient {
             productName = product.getName();
         }catch (HttpClientErrorException e){
             logger.warning("Exception occured while calling the Redsky service:"+e.getMessage());
+            if (e.getMessage().equalsIgnoreCase("404 Not Found")) {
+                throw new ProductNotFoundException(productId);
+            }
         }
         return productName;
     }

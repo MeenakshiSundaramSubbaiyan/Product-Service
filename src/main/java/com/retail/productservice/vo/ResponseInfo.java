@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Value object to hold the information about the response such as code, message and response type (Error or Success)
  */
-public class ErrorResponse {
+public class ResponseInfo {
 
     @JsonProperty("Code")
     private String code;
@@ -16,10 +16,10 @@ public class ErrorResponse {
     @JsonProperty("ResponseType")
     private String responseType;
 
-    public ErrorResponse(){
+    public ResponseInfo(){
     }
 
-    public ErrorResponse(String code, String message, String responseType){
+    public ResponseInfo(String code, String message, String responseType){
         this.code = code;
         this.message = message;
         this.responseType = responseType;

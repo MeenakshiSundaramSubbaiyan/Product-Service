@@ -1,6 +1,6 @@
 package com.retail.productservice.exception;
 
-import com.retail.productservice.vo.ErrorResponse;
+import com.retail.productservice.vo.ResponseInfo;
 
 
 /**
@@ -8,17 +8,17 @@ import com.retail.productservice.vo.ErrorResponse;
  */
 public class InvalidInputException extends RuntimeException{
 
-    private ErrorResponse error;
+    private ResponseInfo error;
 
-    public InvalidInputException(ErrorResponse error){
+    public InvalidInputException(ResponseInfo error){
         this.error = error;
     }
 
-    public ErrorResponse getError() {
+    public ResponseInfo getError() {
         return error;
     }
 
-    public void setError(ErrorResponse error) {
+    public void setError(ResponseInfo error) {
         this.error = error;
     }
 }

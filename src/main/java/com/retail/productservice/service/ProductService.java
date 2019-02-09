@@ -1,9 +1,7 @@
 package com.retail.productservice.service;
 
 import com.retail.productservice.vo.ProductResponse;
-import org.springframework.stereotype.Component;
 
-@Component
 public interface ProductService {
 
     /**
@@ -12,5 +10,9 @@ public interface ProductService {
      * @return
      */
     ProductResponse getProductInfo(String productId);
+
+    ProductResponse retrieveProductPrice(long productId);
+
+    void updateProductPrice(ProductResponse productJSON);
 
 }
