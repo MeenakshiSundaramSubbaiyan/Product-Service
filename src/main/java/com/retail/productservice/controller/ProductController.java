@@ -31,6 +31,15 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
+    }
+
+    public void setProductValidator(ProductValidator productValidator) {
+        this.productValidator = productValidator;
+    }
+
+
     @InitBinder("productResponse")
     public void setProductsBinder(WebDataBinder webDataBinder) {
         webDataBinder.setValidator(productValidator);

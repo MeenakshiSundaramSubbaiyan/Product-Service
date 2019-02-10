@@ -8,8 +8,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,6 +21,10 @@ public class ProductClient {
     Logger logger = Logger.getLogger(ProductClient.class.getName());
 
     public static final String REDSKY_PRODUCT_ENDPOINT_URI = "https://redsky.target.com/v1/pdp/tcin/{id}?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics";
+
+    public void setRestTemplate(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Autowired
     private RestTemplate restTemplate;
