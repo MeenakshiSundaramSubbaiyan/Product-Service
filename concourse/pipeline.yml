@@ -1,0 +1,98 @@
+##
+##Pipeline for Product Service
+##
+resources:
+- name: build-dev
+  type: git
+  source:
+    uri: git@github.com/MeenakshiSundaramSubbaiyan/Product-Service.git
+    branch: master
+    private_key: {{github-private-key}}
+  check_every: 24h
+  webhook_token: GzMOjVnkFEbFtiwXHgJi
+
+- name: slack
+  type: slack-notification
+  source:
+    url: {{slack-webhook-url}}
+
+
+resource_types:
+  - name: slack-notification
+    type: docker-image
+    source:
+      repository: cfcommunity/slack-notification-resource
+      registry_mirror: https://docker.artifactory.myretail.com
+
+groups:
+- name: dev
+  jobs:
+  - Dev Build Artifact
+  - Build and Deploy Image
+
+##
+##
+##Dev Pipeline
+##
+##
+jobs:
+- name: Dev Build Artifact
+  max_in_flight: 1
+  plan:
+  - get: build-dev
+    trigger: true
+  - task: build
+    file: build-dev/concourse/maven_build.yml
+    input_mapping: {code-repo: build-dev}
+    params:
+      DIST_DIRECTORY: target
+  - task: Upload to Artifactory
+    file: build-dev/concourse/artifactory_upload_artifact.yml
+    input_mapping:
+      code-repo: build-dev
+    params:
+      GITHUB_PRIVATE_KEY: {{github-private-key}}
+      GITHUB_TOKEN: {{github-token}}
+      ENVIRONMENT: development
+      SLACK_WEBHOOK_URL: {{slack-webhook-url}}
+      ARTIFACTORY_TOKEN: {{artifactory-token}}
+      ARTIFACTORY_USER: {{artifactory-user}}
+    on_failure:
+      put: slack
+      params:
+        channel: productservice-concourse
+        username: ProductServiceConcourseBot
+        icon_url: https://avatars1.githubusercontent.com/u/7809479?v=3&s=200
+        text: $BUILD_PIPELINE_NAME/$BUILD_JOB_NAME failed to deploy! <$ATC_EXTERNAL_URL/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|  Click for details.>
+    on_success:
+      put: slack
+      params:
+        channel: productservice-concourse
+        username: ProductServiceConcourseBot
+        icon_url: https://avatars1.githubusercontent.com/u/7809479?v=3&s=200
+        text: $BUILD_PIPELINE_NAME/$BUILD_JOB_NAME passed. <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|  Click for details.>
+
+- name: Build and Deploy Image
+  max_in_flight: 1
+  plan:
+  - get: build-dev
+    trigger: true
+    passed: [Dev Build Artifact]
+  - task: Build Image
+    file: build-dev/concourse/deploy_gcp.yml
+    input_mapping:
+      code-repo: build-dev
+    params:
+      PROJECT: hd-srch-dev
+    on_failure:
+      put: slack
+      params:
+        channel: productservice-concourse
+        username: ProductServiceConcourseBot
+        text: $BUILD_PIPELINE_NAME/$BUILD_JOB_NAME failed to deploy! <$ATC_EXTERNAL_URL/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|  Click for details.>
+    on_success:
+      put: slack
+      params:
+        channel: productservice-concourse
+        username: ProductServiceConcourseBot
+        text: $BUILD_PIPELINE_NAME/$BUILD_JOB_NAME passed. <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|  Click for details.>

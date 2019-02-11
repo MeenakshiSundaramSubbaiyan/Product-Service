@@ -1,0 +1,13 @@
+platform: linux
+image_resource:
+  type: docker-image
+  source:
+    repository: docker.artifactory.myretail.com/flow/java
+    tag: "latest"
+inputs:
+  - name: code-repo
+run:
+  dir: code-repo
+  path: concourse/scripts/maven_build.sh
+outputs:
+  - name: dist
