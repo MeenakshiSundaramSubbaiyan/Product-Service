@@ -6,6 +6,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Value object to hold the response details for the ProductID
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Document(collection = "retrieveprice")
 public class ProductResponse {

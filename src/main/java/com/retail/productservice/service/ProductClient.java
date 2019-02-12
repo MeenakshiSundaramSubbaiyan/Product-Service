@@ -15,6 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+/**
+ * Wrapperclass to retrieve the ProductName from Redsky service using RestTemplate
+ */
 @Component
 public class ProductClient {
 
@@ -30,6 +33,11 @@ public class ProductClient {
     private RestTemplate restTemplate;
 
 
+    /**
+     * Method to invoke the Redsky service to fetch product details for the given ProductID
+     * @param productId
+     * @return
+     */
     public String getProductNameById(Long productId){
         String productName = null;
         try{

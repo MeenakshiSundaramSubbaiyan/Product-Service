@@ -4,7 +4,7 @@ import com.retail.productservice.vo.ResponseInfo;
 
 
 /**
- * Exception to hold more information about the error after the input validation
+ * Exception handler class to hold more information about the error after the input validation
  */
 public class InvalidInputException extends RuntimeException{
 

@@ -16,6 +16,9 @@ import java.math.BigDecimal;
 import java.util.Currency;
 
 
+/**
+ * Validator class to validate the input parameters
+ */
 @Component
 public class ProductValidator implements Validator {
 

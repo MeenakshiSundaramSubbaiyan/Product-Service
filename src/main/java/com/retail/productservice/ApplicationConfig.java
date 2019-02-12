@@ -16,6 +16,9 @@ import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Locale;
 
+/**
+ *Java Configuration class to define beans and their dependencies
+ */
 @Configuration
 public class ApplicationConfig {
 
@@ -30,6 +33,11 @@ public class ApplicationConfig {
         return builder.build();
     }
 
+    /**
+     * Bean definition to to populate the data in Mongo DB with sample Product ID
+     * with price information during application startup
+     * @return
+     */
     @Bean
     CommandLineRunner runner(){
         logger.info("Prepopulating mongo db for product price values");

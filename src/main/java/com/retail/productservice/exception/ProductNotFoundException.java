@@ -1,6 +1,6 @@
 package com.retail.productservice.exception;
 
-/*
+/**
  * Exception to be thrown if there are no products found for the given product id
  */
 public class ProductNotFoundException extends RuntimeException {

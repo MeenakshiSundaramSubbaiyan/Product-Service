@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 
-/*
+/**
  * Value Object to hold the price information such as price and corresponding currency code
  */
 @JsonIgnoreProperties(ignoreUnknown = true)

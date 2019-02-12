@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.retail.productservice.util.ProductDeserializer;
 
+/**
+ * Value Object to hold product details
+ */
 @JsonDeserialize(using = ProductDeserializer.class)
 @JsonIgnoreProperties( ignoreUnknown = true)
 public class Product {

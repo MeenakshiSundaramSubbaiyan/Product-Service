@@ -1,5 +1,8 @@
 package com.retail.productservice.constants;
 
+/**
+ *Constant class to define the response message
+ */
 public class ProductConstants {
 
     public static final String RESPONSE_TYPE_SUCCESS = "Success";

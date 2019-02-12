@@ -19,6 +19,11 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     ProductRepository productRepository;
 
+    /**
+     * Method to fetch the product name from Redsky service and price from DB for the given ProductID
+     * @param productId
+     * @return
+     */
     @Override
     public ProductResponse getProductInfo(String productId) {
         ProductResponse productResponse = null;
@@ -34,11 +39,20 @@ public class ProductServiceImpl implements ProductService{
         return productResponse;
     }
 
+    /**
+     * Method to fetch the price from mongo DB
+     * @param productId
+     * @return
+     */
     @Override
     public ProductResponse retrieveProductPrice(long productId) {
         return productRepository.queryPriceByProductId(productId);
     }
 
+    /**
+     * Method to update the price to mongo DB for the given ProductID
+     * @param productJSON
+     */
     @Override
     public void updateProductPrice(ProductResponse productJSON) {
         productClient.getProductNameById(productJSON.getProductId());

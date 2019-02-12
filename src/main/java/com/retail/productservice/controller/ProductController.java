@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * RestController to handle the input request for Product Service
  */
 @RestController
 @RequestMapping("/api")
@@ -81,6 +81,15 @@ public class ProductController {
         return productResponseList;
     }*/
 
+
+    /**
+     * Request handler method to process PUT requests to update price information
+     * for the given Product information
+     *
+     * @param productJSON
+     * @param productId
+     * @return responseEntity
+     */
     @PutMapping(value = URL, produces =  MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseInfo> updateProductPrice(@Valid @RequestBody ProductResponse productJSON,
                                                            @PathVariable("id") String productId){
