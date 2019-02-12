@@ -1,5 +1,7 @@
 package com.retail.productservice.service;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.retail.productservice.exception.ProductNotFoundException;
 import com.retail.productservice.vo.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,8 @@ public class ProductClient {
      * @param productId
      * @return
      */
+    @HystrixCommand(fallbackMethod = "handleServiceFailure", commandProperties = { @HystrixProperty(name =
+            "execution.isolation.thread.timeoutInMilliseconds", value = "3000")})
     public String getProductNameById(Long productId){
         String productName = null;
         try{
@@ -60,5 +64,10 @@ public class ProductClient {
         headers.put("Accept", MediaType.APPLICATION_JSON_VALUE);
         HttpEntity<Object> requestEntity = new HttpEntity<>(headers);
         return requestEntity;
+    }
+
+    public String handleServiceFailure(Long ProductId, Throwable e){
+        logger.warning("CircuitBreaker enabled : Inside handleServiceFailure:"+e.getMessage());
+        return null;
     }
 }

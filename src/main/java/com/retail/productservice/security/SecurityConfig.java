@@ -24,7 +24,7 @@ import static lombok.AccessLevel.PRIVATE;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
-/*
+/**
  * Spring Security Configuration information
  */
 @Configuration

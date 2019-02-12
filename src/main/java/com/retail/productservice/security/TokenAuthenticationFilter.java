@@ -18,7 +18,7 @@ import static java.util.Optional.ofNullable;
 import static lombok.AccessLevel.PRIVATE;
 import static org.apache.commons.lang3.StringUtils.removeStart;
 
-/*
+/**
  * Overriding Spring securities default Authentication processing filter to configure token based authentication
  */
 @FieldDefaults(level = PRIVATE, makeFinal = true)

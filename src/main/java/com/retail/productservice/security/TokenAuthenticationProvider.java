@@ -16,7 +16,7 @@ import java.util.Optional;
 import static lombok.AccessLevel.PACKAGE;
 import static lombok.AccessLevel.PRIVATE;
 
-/*
+/**
  * Customizing Spring Authentication provider for token based Authentication
  */
 @Component
