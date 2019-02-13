@@ -40,8 +40,8 @@ public class ProductClient {
      * @param productId
      * @return
      */
-    @HystrixCommand(fallbackMethod = "handleServiceFailure", commandProperties = { @HystrixProperty(name =
-            "execution.isolation.thread.timeoutInMilliseconds", value = "3000")})
+/*    @HystrixCommand(fallbackMethod = "handleServiceFailure", commandProperties = { @HystrixProperty(name =
+            "execution.isolation.thread.timeoutInMilliseconds", value = "3000")})*/
     public String getProductNameById(Long productId){
         String productName = null;
         try{

@@ -44,6 +44,14 @@ mvn clean install
 java -jar target/retail-product-rest-api-0.0.1-SNAPSHOT.jar
 ```
 
+## Code Coverage Report
+
+```
+Code coverage report will be generated in the below path after the running the command mvn clean install
+<ProjectDirectory>\target\site\jacoco\index.html
+```
+
+
 ## Start as Spring Boot Application using Maven
 
 ```
@@ -78,13 +86,17 @@ Sample Product Ids: 13860416, 13860418, 13860420, 13860421, 13860424, 13860425
 ```
 http://localhost:8080/swagger-ui.html
 ```
+## Postman Document reference for sample request and response
+```
+https://documenter.getpostman.com/view/6656799/RztsnRaG
+```
 
 ## Sample JSON for Update Request
 ```
 {
     "id": 13860416,
     "name": "Progressive power yoga:Sedona experie (DVD)",
-    "current_price": {
+    "price": {
         "value": 6.67,
         "currency_code": "USD"
     }
