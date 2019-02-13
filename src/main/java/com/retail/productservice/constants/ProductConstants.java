@@ -22,4 +22,5 @@ public class ProductConstants {
     public static final String PRODUCT_UPDATE_SUCCESS = "Product Price Updated";
     public static final String PRODUCT_NOT_FOUND = "Product [%s] not found";
     public static final String PRODUCT_END_POINT_UNREACHABLE = "RedSky Service Endpoint is Unreachable, Please contact Administrator";
+    public static final String MISSING_AUTHENTICATION_TOKEN = "BadCredentialsException: Missing Authentication Token";
 }

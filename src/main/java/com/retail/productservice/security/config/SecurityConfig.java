@@ -1,4 +1,4 @@
-package com.retail.productservice.security;
+package com.retail.productservice.security.config;
 
 import lombok.experimental.FieldDefaults;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

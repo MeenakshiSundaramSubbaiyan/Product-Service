@@ -1,4 +1,4 @@
-package com.retail.productservice.security;
+package com.retail.productservice.security.config;
 
 import org.springframework.security.web.RedirectStrategy;
 

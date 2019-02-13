@@ -1,12 +1,15 @@
-package com.retail.productservice.security;
+package com.retail.productservice.security.config;
 
+import com.retail.productservice.security.handler.LoginFailureHandler;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.web.util.UrlPathHelper;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -26,6 +29,10 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
 
 	public static final String BEARER = "Bearer";
 
+	private final static UrlPathHelper urlPathHelper = new UrlPathHelper();
+
+	LoginFailureHandler loginFailureHandler = new LoginFailureHandler();
+
 	TokenAuthenticationFilter(final RequestMatcher requiresAuth) {
 		super(requiresAuth);
 	}
@@ -44,6 +51,13 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
                                             final FilterChain chain, final Authentication authResult) throws IOException, ServletException {
 		super.successfulAuthentication(request, response, chain, authResult);
 		chain.doFilter(request, response);
+	}
+
+	@Override
+	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
+											  AuthenticationException failed) throws IOException, ServletException {
+		loginFailureHandler.onAuthenticationFailure(request,response,failed);
+
 	}
 
 }

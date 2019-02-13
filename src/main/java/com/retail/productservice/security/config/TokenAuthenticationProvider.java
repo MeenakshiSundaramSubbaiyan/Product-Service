@@ -1,4 +1,4 @@
-package com.retail.productservice.security;
+package com.retail.productservice.security.config;
 
 import com.retail.productservice.auth.service.UserAuthenticationService;
 import lombok.AllArgsConstructor;
