@@ -1,7 +1,8 @@
 # Case Study :: Product Service
 
-Product Service API exposes Product Details like Product Name and Price details for the given Product ID. This service also provides an option to update
-the price into the database based on input ProductId and request JSON.
+Product Service API exposes Product Details like Product Name and Price information for the given Product ID. This service also provides an option to update
+the price into the database for the given ProductId and request JSON. Product name is fetched from the Redsky api and the price details are stored and retrieved
+from embedded MongoDB.
 
 ## Technology Stack
 
