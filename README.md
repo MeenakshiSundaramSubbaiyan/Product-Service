@@ -42,7 +42,7 @@ mvn clean test
 
 ```
 mvn clean install
-java -jar target/retail-product-rest-api-0.0.1-SNAPSHOT.jar
+java -jar target/product-service-0.0.1-SNAPSHOT.jar
 ```
 
 ## Code Coverage Report
