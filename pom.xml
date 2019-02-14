@@ -89,6 +89,8 @@
                         <exclude>**com/retail/productservice/util/**</exclude>
                         <exclude>**com/retail/productservice/exception/**</exclude>
                         <exclude>**com/retail/productservice/constants/**</exclude>
+                        <exclude>**com/retail/productservice/auth/vo/**</exclude>
+                        <exclude>**com/retail/productservice/security/vo/**</exclude>
                     </excludes>
                 </configuration>
                 <executions>

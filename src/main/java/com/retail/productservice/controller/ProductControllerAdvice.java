@@ -31,8 +31,8 @@ public class ProductControllerAdvice {
     public ResponseInfo invalidInput(InvalidInputException e){ return e.getError();}
 
     /**
-     * Advice to be applied in case of the ProductNotFoundException thrown from
-     * controller if there are no product returned from redsky product endpoint
+     * Handles ProductNotFoundException thrown from controller if there are no product returned
+     * from redsky product endpoint
      *
      * @param e
      * @return
@@ -46,9 +46,8 @@ public class ProductControllerAdvice {
     }
 
     /**
-     * Advice to be applied in case of the ResourceAccessException thrown from
-     * controller if there are any issues accessing the redsky product endpoint to
-     * fetch product information
+     * Handles ResourceAccessException thrown from controller if there are any issues in accessing
+     * the redsky product endpoint to fetch product information
      *
      * @param e
      * @return
@@ -75,7 +74,7 @@ public class ProductControllerAdvice {
     }
 
     /**
-     * Advise to applied in case of any validation failure with the given input data
+     * Exception handling for input data validation failure cases
      *
      * @param e
      * @return
